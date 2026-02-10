@@ -1,0 +1,9 @@
+# HW3: Data Warehousing & BigQuery
+google-cloud-bigquery>=3.0.0
+google-cloud-storage>=2.0.0
+db-dtypes  # required by BigQuery to_dataframe()
+# Optional: for DLT_upload_to_GCP.ipynb (GCS + BigQuery)
+# dlt[bigquery,gs]
+# Optional: for DLT notebook local testing
+# dlt[duckdb]
+# pandas, requests  # used by DLT notebook
