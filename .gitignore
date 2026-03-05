@@ -17,3 +17,9 @@ serving_dir
 *.parquet
 *.csv
 *.duckdb
+
+.bruin.yml
+logs/runs
+logs/*.log
+__pycache__/
+*.py[cod]
