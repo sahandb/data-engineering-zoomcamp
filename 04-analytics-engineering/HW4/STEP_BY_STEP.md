@@ -191,6 +191,20 @@ To get the **count of records in `stg_fhv_tripdata`** and submit Q6:
 
 ---
 
+## Verify (optional)
+
+To confirm BigQuery and the dbt models are working with your GCP project, run (from repo root, with the same env vars as above):
+
+```bash
+conda activate dataTalks
+export GCP_PROJECT_ID="project-3a3cf597-6dcd-4db6-8c0"   # or your project
+python 04-analytics-engineering/HW4/test_bq_hw4.py
+```
+
+This runs Q3–Q6 queries and checks the expected values (12,184; East Harlem North; 384,624; 43,244,693).
+
+---
+
 ## Quick reference
 
 | Step | What you do |
