@@ -95,8 +95,28 @@ sources:
             description: Improvement surcharge
           - name: total_amount
             description: Total amount charged
+
         config:
           loaded_at_field: tpep_pickup_datetime
+      - name: fhv_tripdata
+        description: Raw For-Hire Vehicle (FHV) trip records
+        columns:
+          - name: dispatching_base_num
+            description: Base number of the dispatch company
+          - name: pickup_datetime
+            description: Pickup date and time
+          - name: dropoff_datetime
+            description: Dropoff date and time
+          - name: pulocationid
+            description: TLC Taxi Zone where trip started
+          - name: dolocationid
+            description: TLC Taxi Zone where trip ended
+          - name: sr_flag
+            description: Shared ride flag
+          - name: affiliated_base_number
+            description: Affiliated base number
+        config:
+          loaded_at_field: pickup_datetime
     config:
       freshness:
         warn_after: {count: 24, period: hour}
