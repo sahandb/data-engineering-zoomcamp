@@ -73,21 +73,18 @@ After this, you should have a working NYC taxi data pipeline.
 
 ## Step 5: Run the pipeline (optional)
 
-To run the pipeline once everything is configured:
+From **inside** `my-pipeline` (so Bruin finds `.bruin.yml`), or pass it explicitly:
 
 ```bash
-cd my-pipeline
-bruin run ./pipeline.yml
-# Or, for a specific pipeline path, e.g.:
-# bruin run ./pipelines/nyc-taxi/pipeline.yml
+cd 05-data-platforms/my-pipeline
+export PATH="$HOME/.local/bin:$PATH"   # if bruin was just installed
+bruin run ./pipeline --config-file .bruin.yml --full-refresh
 ```
 
-Useful flags:
-
-- `--full-refresh` — drop and recreate tables (first-time run on empty DB)
-- `--var 'taxi_types=["yellow"]'` — override variables
-- `--asset <name> --downstream` — run one asset and its dependents
-- `bruin lineage ./pipeline.yml` — view dependency graph
+- **First run / empty DB:** use `--full-refresh`.
+- **Override variables:** `bruin run ./pipeline --config-file .bruin.yml --var 'taxi_types=["yellow"]'`.
+- **Run one asset + downstream:** `bruin run ./pipeline/assets/ingestion/trips.py --downstream --config-file .bruin.yml`.
+- **View dependency graph (Q6):** `bruin lineage ./pipeline/assets/ingestion/trips.py`.
 
 ---
 
@@ -123,6 +120,36 @@ Useful flags:
 | Q5. No NULLs on column | `name: not_null` |
 | Q6. Visualize dependency graph | `bruin lineage` |
 | Q7. First-time run, create tables from scratch | `--full-refresh` |
+
+---
+
+## How to fix HW5
+
+**Setup / Bruin not working**
+
+1. **Install Bruin CLI** (if missing): `curl -LsSf https://getbruin.com/install/cli | sh` then restart the terminal. Check: `bruin --version`.
+2. **Init the project**: From a clean folder run `bruin init zoomcamp my-pipeline` and `cd my-pipeline`. The zoomcamp template must be used (homework expects it).
+3. **Configure `.bruin.yml`** in the project root with a DuckDB connection (see Step 3 above). Without this, `bruin run` will fail.
+4. **Run from the right place**: Run `bruin run` (or `bruin run ./pipeline.yml`) from inside `my-pipeline`, or pass the full path to the pipeline/asset.
+
+**Wrong answer on the submission form**
+
+Use the **exact option text** from the homework (the form is multiple choice):
+
+| Q | Choose this option |
+|---|--------------------|
+| 1 | `.bruin.yml` and `pipeline/` with `pipeline.yml` and `assets/` |
+| 2 | `time_interval` - incremental based on a time column |
+| 3 | `bruin run --var 'taxi_types=["yellow"]'` |
+| 4 | `bruin run ingestion/trips.py --downstream` |
+| 5 | `name: not_null` |
+| 6 | `bruin lineage` |
+| 7 | `--full-refresh` |
+
+**Notebook or paths**
+
+- The notebook (`hw5.ipynb`) only has theory; no code to run. Open it and run cells to review.
+- If a link is broken, the homework lives in `cohorts/2026/05-data-platforms/homework.md` and the form is: <https://courses.datatalks.club/de-zoomcamp-2026/homework/hw5>.
 
 ---
 
