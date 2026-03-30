@@ -1,5 +1,7 @@
 ## Running Spark in the Cloud
 
+**Your own GCP project (local PySpark → `gs://`):** start with [spark_gcs_local_gcp.ipynb](spark_gcs_local_gcp.ipynb) — Application Default Credentials, your bucket, and the `gcs-connector-hadoop3-latest.jar`. The examples below use the course demo bucket `dtc_data_lake_de-zoomcamp-nytaxi`; replace with your bucket if you do not have access.
+
 ### Connecting to Google Cloud Storage 
 
 Uploading data to GCS:
